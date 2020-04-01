@@ -80,7 +80,7 @@ class MyArr {
     }
 }
 
-public class Lesson_2 {
+public class Lesson_2_part1 {
     public static void main(String[] args) {
         MyArr arr = new MyArr(1000000);
         int search = 111111;
