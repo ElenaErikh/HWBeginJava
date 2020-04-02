@@ -7,7 +7,7 @@ public class Lesson_2_part2 {
         int len = 5;
         int[] arr = new int[len];
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = (int) (Math.random() * 10);
+            arr[i] = (int) (Math.random() * 50);
         }
         int low = 0;
         int high = arr.length - 1;
@@ -84,39 +84,41 @@ public class Lesson_2_part2 {
         System.out.println(Arrays.toString(array3));
     }
 
-    public static void quickSort(int[] arrayToSort, int low, int high){
-        int[] array4 = Arrays.copyOf(arrayToSort, arrayToSort.length);
-        long start = System.nanoTime();
+    public static void quickSortImpl(int[] array, int low, int high){
 
-        if (array4.length == 0)
+        if (array.length == 0)
             return;
         if (low >= high)
             return;
         int middle = low + (high - low) / 2;
-        int base = array4[middle];
+        int base = array[middle];
 
         int i = low, j = high;
         while (i <= j) {
-            while (array4[i] < base) {
+            while (array[i] < base) {
                 i++;
             }
-            while (array4[j] > base) {
+            while (array[j] > base) {
                 j--;
             }
             if (i <= j) {
-                change(array4, i, j);
+                change(array, i, j);
                 i++;
                 j--;
             }
         }
         if (low < j)
-            quickSort(array4, low, j);
+            quickSortImpl(array, low, j);
         if (high > i)
-            quickSort(array4, i, high);
+            quickSortImpl(array, i, high);
+    }
 
+    private static void quickSort(int[] array, int low, int high) {
+        long start = System.nanoTime();
+        quickSortImpl(array, low, high);
         long stop = System.nanoTime();
         System.out.println(stop - start);
-        System.out.println(Arrays.toString(array4));
+        System.out.println(Arrays.toString(array));
     }
 }
 
